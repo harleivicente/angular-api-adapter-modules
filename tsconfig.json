@@ -14,6 +14,12 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "paths": {
+      "shoes-api": [
+        "dist/shoes-api/shoes-api",
+        "dist/shoes-api"
+      ]
+    },
     "target": "es2015",
     "module": "es2020",
     "lib": [
