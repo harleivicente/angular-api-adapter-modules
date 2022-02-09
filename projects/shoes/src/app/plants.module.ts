@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
 import { PlantListComponent } from './plant-list-component/plant-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
       PlantListComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
+    HttpClientModule,
     RouterModule.forChild([
         {
-            path: 'plants', component: PlantListComponent
+            path: '', component: PlantListComponent
         }
     ])
   ],

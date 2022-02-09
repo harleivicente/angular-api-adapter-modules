@@ -15,7 +15,7 @@ export interface Shoe {
 })
 export class ShoesStockApiService {
 
-    fakeApiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
+    fakeApiUrl = 'https://jsonplaceholder.typicode.com/todos/1?from=api-service';
     fakeData = [{
         id: 3,
         name: 'Nike Air',

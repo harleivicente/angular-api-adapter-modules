@@ -1,20 +1,26 @@
 import { NgModule } from '@angular/core';
 import { ShoeListComponent } from './shoe-list-component/shoe-list.component';
 import { RouterModule } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
+import { ShoesApiModule } from 'shoes-api';
+import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ShoesInterceptor } from './shoes.interceptor';
 
 @NgModule({
   declarations: [
       ShoeListComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
+    ShoesApiModule,
     RouterModule.forChild([
-        {
-            path: 'shoes', component: ShoeListComponent
-        }
-    ])
+      {
+        path: '', component: ShoeListComponent
+      }
+    ]),
   ],
-  providers: []
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ShoesInterceptor, multi: true }
+  ]
 })
 export class ShoesModule {}
