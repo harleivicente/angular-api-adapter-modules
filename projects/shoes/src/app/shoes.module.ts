@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { ShoeListComponent } from './shoe-list-component/shoe-list.component';
 import { RouterModule } from '@angular/router';
 import { ShoesApiModule } from 'shoes-api';
 import { CommonModule } from '@angular/common';
@@ -7,15 +6,17 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ShoesInterceptor } from './shoes.interceptor';
 
 @NgModule({
-  declarations: [
-      ShoeListComponent
-  ],
   imports: [
     CommonModule,
     ShoesApiModule,
     RouterModule.forChild([
       {
-        path: '', component: ShoeListComponent
+        path: 'list',
+        loadChildren: () => import('./shoe-list.module').then(m => m.ShoesListModule)
+      },
+      {
+        path: 'custom',
+        loadChildren: () => import('./shoe-custom.module').then(m => m.ShoesCustomModule)
       }
     ]),
   ],

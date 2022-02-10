@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ShoesStockApiService } from 'shoes-api';
 
 @Component({
   selector: 'app-plant-list',
@@ -8,7 +9,9 @@ import { Component } from '@angular/core';
 export class PlantListComponent {
   title = 'plant';
 
-  constructor() {}
+  constructor(private shoeApiStock: ShoesStockApiService) {
+    this.shoeApiStock.getAvailableShoes().subscribe();
+  }
 
   ngOnInit() {}
 
