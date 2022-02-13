@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ShoeCustomRoutingModule } from './shoe-custom-routing.module';
 import { ShoeCustomComponent } from './shoe-custom-component/shoe-custom.component';
 
@@ -8,7 +7,6 @@ import { ShoeCustomComponent } from './shoe-custom-component/shoe-custom.compone
     ShoeCustomComponent
   ],
   imports: [
-    CommonModule,
     ShoeCustomRoutingModule
   ]
 })
