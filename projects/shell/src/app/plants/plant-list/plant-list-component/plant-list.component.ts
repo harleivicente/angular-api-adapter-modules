@@ -9,9 +9,7 @@ import { ShoesStockApiService } from 'shoes-api';
 export class PlantListComponent {
   title = 'plant';
 
-  constructor(private shoeApiStock: ShoesStockApiService) {
-    this.shoeApiStock.getAvailableShoes().subscribe();
-  }
+  constructor() {}
 
   ngOnInit() {}
 

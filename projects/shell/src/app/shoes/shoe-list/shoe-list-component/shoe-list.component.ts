@@ -14,10 +14,6 @@ export class ShoeListComponent {
     private shoeStockApiService: ShoesStockApiService
   ) {}
 
-  ngOnInit() {
-    this.shoeStockApiService.getAvailableShoes().subscribe(shoes => {
-      this.shoes = shoes;
-    })
-  }
+  ngOnInit() {}
 
 }

@@ -1,19 +1,13 @@
 import { NgModule } from '@angular/core';
 import { ShoeListComponent } from './shoe-list-component/shoe-list.component';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { ShoeListRoutingModule } from './shoe-list-routing.module';
 
 @NgModule({
   declarations: [
       ShoeListComponent
   ],
   imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: '', component: ShoeListComponent
-      }
-    ]),
+    ShoeListRoutingModule
   ],
   providers: []
 })

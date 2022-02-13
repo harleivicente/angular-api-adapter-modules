@@ -1,0 +1,14 @@
+
+.shoe-list {
+    display: flex;
+    max-width: 960px;
+    width: calc(100% - 30px);
+    flex-flow: wrap;
+    margin: 45px 15px 0px;
+}
+
+.shoe {
+    background-color: rgb(228, 228, 228);
+    margin: 15px;
+    padding: 30px;
+}
