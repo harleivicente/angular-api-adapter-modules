@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   imports: [RouterModule.forRoot([
     {
+      path: '', redirectTo: 'shoes/list', pathMatch: 'full'
+    },
+    {
       path: 'shoes',
       loadChildren: () => import('./shoes/shoes.module').then(m => m.ShoesModule)
     }, 

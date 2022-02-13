@@ -25,10 +25,8 @@ export class ShoesStockApiService {
     constructor(private httpClient: HttpClient) { }
 
     getAvailableShoes(): Observable<Shoe[]> {
-        console.log('Getting available shoes...');
         return this.httpClient.get(this.fakeApiUrl).pipe(
             map(response => {
-                console.log('api response...', { response });
                 return this.fakeData;
             })
         );
