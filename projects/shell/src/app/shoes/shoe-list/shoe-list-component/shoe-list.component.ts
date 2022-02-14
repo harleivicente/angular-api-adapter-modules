@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { ShoesStockApiService, Shoe } from 'shoes-api';
 
 @Component({
@@ -17,10 +18,9 @@ export class ShoeListComponent {
   ) {}
 
   ngOnInit() {
-    this.shoeStockApiService.getAvailableShoes().subscribe(() => {
+    this.shoeStockApiService.getAvailableShoes(34).subscribe(() => {
       console.log('ShoeStockAPI from shoe-list');
     })
-    this.httpClient.get('https://jsonplaceholder.typicode.com/todos/1?from=shoe-list').subscribe();
   }
 
 }
