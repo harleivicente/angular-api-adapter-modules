@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ShoesStockApiService, Shoe } from 'shoes-api';
 
@@ -11,13 +12,15 @@ export class ShoeListComponent {
   shoes: Shoe[] = [];
 
   constructor(
-    private shoeStockApiService: ShoesStockApiService
+    private shoeStockApiService: ShoesStockApiService,
+    private httpClient: HttpClient
   ) {}
 
   ngOnInit() {
     this.shoeStockApiService.getAvailableShoes().subscribe(() => {
       console.log('ShoeStockAPI from shoe-list');
-    })    
+    })
+    this.httpClient.get('https://jsonplaceholder.typicode.com/todos/1?from=shoe-list').subscribe();
   }
 
 }

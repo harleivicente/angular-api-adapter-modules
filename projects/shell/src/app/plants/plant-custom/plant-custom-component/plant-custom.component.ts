@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ShoesStockApiService } from 'shoes-api';
 
 @Component({
   selector: 'app-plant-custom',
@@ -7,8 +8,10 @@ import { Component } from '@angular/core';
 })
 export class PlantCustomComponent {
 
-  constructor() {}
+  constructor(private shoeStockApiService: ShoesStockApiService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.shoeStockApiService.getAvailableShoes().subscribe();
+  }
 
 }
