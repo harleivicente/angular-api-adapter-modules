@@ -1,5 +1,22 @@
 # AngularApiAdapterSharing
 
+
+![Api libraries as libraries](https://github.com/harleivicente/angular-api-adapter-modules/blob/main/images/HttpAdapter%20Library.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
 
 ## Development server
