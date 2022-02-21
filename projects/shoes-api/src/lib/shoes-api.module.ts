@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ShoesApiInterceptor } from './shoes-api.interceptor';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
   imports: [
     HttpClientModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ShoesApiInterceptor, multi: true }
-  ],
+  providers: [],
   exports: []
 })
 export class ShoesApiModule { }

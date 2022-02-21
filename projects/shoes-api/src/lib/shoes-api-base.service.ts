@@ -1,12 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Injectable, Optional } from "@angular/core";
 import { mergeMap } from "rxjs/operators";
+import { Observable, of } from "rxjs";
 
-export interface ShoeApiConfig {
-    baseUrl: string;
-    authToken: string;
-}
+import { ShoesApiConfigProviderBase, ShoeApiConfig } from "./shoes-api-config-provider-base.service";
+import { ShoesApiModule } from "./shoes-api.module";
 
 interface RequestOptions {
     [key: string]: any,
@@ -14,16 +12,18 @@ interface RequestOptions {
     params?: HttpParams | { [param: string]: string | string[]; };
 }
 
-@Injectable()
-export abstract class ShoesApiBaseService {
+@Injectable({
+    providedIn: ShoesApiModule
+})
+export class ShoesApiBaseService {
 
-    abstract getHttpClient(): HttpClient
-
-    private getApiConfig(): Observable<ShoeApiConfig> {
-        return of({
-            baseUrl: "https://jsonplaceholder.typicode.com",
-            authToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-        });
+    private constructor(
+        private httpClient: HttpClient,
+        @Optional() private apiConfigProvider: ShoesApiConfigProviderBase
+    ) {
+        if (!this.apiConfigProvider) {
+            throw Error("Não foi fornecida uma implementação para ShoesApiConfigProvider");
+        }
     }
 
     private mergeOptions(options: RequestOptions, apiConfig: ShoeApiConfig): RequestOptions {
@@ -42,18 +42,14 @@ export abstract class ShoesApiBaseService {
     }
 
     public get(url: string, options: RequestOptions = {}): Observable<Object> {
-        return this.getApiConfig()
+        return this.apiConfigProvider.getApiConfig()
         .pipe(
             mergeMap(apiConfig => {
                 const fullUrl = `${apiConfig.baseUrl}/${url}`;
                 const mergedOptions = this.mergeOptions(options, apiConfig);
-                return this.getHttpClient().get(fullUrl, mergedOptions);
+                return this.httpClient.get(fullUrl, mergedOptions);
             }) 
         )
     }
-
-    // public post(url: string, body: any, options?: Object): Observable<Object> {
-    //     return this.getHttpClient().post(url, body, options);
-    // }
 
 }

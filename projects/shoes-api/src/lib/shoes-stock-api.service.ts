@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { ShoesApiModule } from './shoes-api.module';
 import { ShoesApiBaseService } from './shoes-api-base.service';
 
@@ -14,18 +12,12 @@ export interface Shoe {
 @Injectable({
   providedIn: ShoesApiModule
 })
-export class ShoesStockApiService extends ShoesApiBaseService {
+export class ShoesStockApiService {
 
-    getHttpClient(): HttpClient {
-        return this.httpClient;
-    }
-
-    private constructor(private httpClient: HttpClient) {
-        super();
-    }
+    private constructor(private apiBase: ShoesApiBaseService) {}
 
     getAvailableShoes(page: number = 1): Observable<any> {
-        const result = this.get('todos/1', {
+        const result = this.apiBase.get('todos/1', {
             params: {
                 page: page.toString()
             }
@@ -34,6 +26,6 @@ export class ShoesStockApiService extends ShoesApiBaseService {
     }
 
     getNewShoes(): Observable<any> {
-        return this.get('todos/2');
+        return this.apiBase.get('todos/2');
     }
 }
